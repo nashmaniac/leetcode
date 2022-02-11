@@ -19,12 +19,6 @@ func (l *longestSubstringWithoutRepeatProblem) Variation1(s string) int {
 	return maxLength
 }
 
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
 func lengthOfLongestSubstring(s string) int {
 	l := longestSubstringWithoutRepeatProblem{}
 	return l.Variation1(s)
