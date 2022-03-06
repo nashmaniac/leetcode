@@ -8,13 +8,12 @@ import (
 
 func main() {
 	testString := []string{
-		"abdbca",
-		"cddpd",
-		"pqr",
-		"pp",
+		"abc",
+		"aaa",
+		"aabbbaa",
 	}
 
 	for _, i := range testString {
-		log.Println(golang.LongestPalindromeSubseq(i))
+		log.Println(i, golang.CountSubstrings(i))
 	}
 }
