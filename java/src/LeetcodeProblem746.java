@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /***
  * @author shetu2153@gmail.com
  *         Problem: Min cost Climbing Stairs
@@ -5,28 +7,26 @@
  ****/
 
 public class LeetcodeProblem746 {
-    public int minCostDPHelper(int[] cost, int start, int n) {
-        if (n < start) {
+
+    int[] result;
+
+    public int minCostDPHelper(int[] cost, int s, int n) {
+        if(s >= n) {
             return 0;
         }
-        if (n == 0) {
-            return cost[0];
+        if(result[s] == -1) {
+            result[s+1] = minCostDPHelper(cost, s+1, n);
+            result[s+2] = minCostDPHelper(cost, s+2, n);
         }
-        if (n == 1) {
-            return Math.min(cost[0], cost[1]);
-        }
-        int n1 = minCostDPHelper(cost, start, n - 1);
-        int n2 = minCostDPHelper(cost, start, n - 2);
-        int currentCost = cost[n] + Math.min(n1, n2);
-        // System.out.println(cost[n] + " " + currentCost + " " + cost[n-1]);
-        return Math.min(currentCost, cost[n-1]);
-
+        return cost[s] + Math.min(result[s+1], result[s+2]);
     }
 
     public int minCostClimbingStairs(int[] cost) {
-        return minCostDPHelper(cost, 0, cost.length - 1);
+        result = new int[cost.length+2];
+        Arrays.fill(result, -1);
+        return Math.min(minCostDPHelper(cost, 0, cost.length),minCostDPHelper(cost, 1, cost.length));
     }
-
+    
     public static void main(String[] args) {
         int[][] testData = new int[][] {
                 { 10, 15, 20 },
