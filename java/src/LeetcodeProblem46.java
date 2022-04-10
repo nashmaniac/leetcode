@@ -37,6 +37,6 @@ public class LeetcodeProblem46 {
 
     public static void main(String[] args) {
         LeetcodeProblem46 l = new LeetcodeProblem46();
-        l.permute(new int[] { 1, 2, 3 });
+        System.out.println(l.permute(new int[] { 1, 2, 3 }).toString());
     }
 }
