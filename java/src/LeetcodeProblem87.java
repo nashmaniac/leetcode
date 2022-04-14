@@ -16,8 +16,8 @@ public class LeetcodeProblem87 {
         }
         System.out.println((s1.substring(i, j+1)+postfix));
         for (int k = i; k < j; k++) {
-            String firstPart = isScramble(s1, s2, i, k, s1.substring(k+1));
-            String secondPart = isScramble(s1, s2, k+1, j, "");
+            // String firstPart = isScramble(s1, s2, i, k, s1.substring(k+1));
+            // String secondPart = isScramble(s1, s2, k+1, j, "");
             // System.out.println(s);
         }
         return s1.substring(i, j + 1);

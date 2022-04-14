@@ -13,7 +13,7 @@ public class LeetcodeProblem46 {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
 
-        Queue<List<Integer>> permutations = new LinkedList();
+        Queue<List<Integer>> permutations = new LinkedList<List<Integer>>();
         permutations.add(new ArrayList<>());
 
         for (int i = 0; i < nums.length; i++) {
