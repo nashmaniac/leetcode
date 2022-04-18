@@ -26,14 +26,24 @@ public class Graph {
     }
 
     public void generateGraph(int[][] g) {
-        for(int[] i: g) {
+        for (int[] i : g) {
             this.addEdge(i[0], i[1]);
         }
     }
 
+    public Graph transposeGraph() {
+        Graph g = new Graph(this.numVertices, this.isDirected);
+        for (int i = 0; i < this.numVertices; i++) {
+            for (int a : this.adjacencyList.get(i)) {
+                g.addEdge(a, i);
+            }
+        }
+        return g;
+    }
+
     public void printGraph() {
         int count = 0;
-        for(List<Integer> points: this.adjacencyList) {
+        for (List<Integer> points : this.adjacencyList) {
             System.out.printf("%d %s\n", count, points.toString());
             count++;
         }
