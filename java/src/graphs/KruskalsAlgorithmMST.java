@@ -10,7 +10,7 @@ public class KruskalsAlgorithmMST {
 
     public List<Edge> runAlgo(List<Edge> edges, int n) {
         List<Edge> result = new ArrayList<>();
-        Union<Integer>[] nodes = new Union[n];
+        UnionFind u = new UnionFind(n);
         PriorityQueue<Edge> pq = new PriorityQueue<>(new Comparator<Edge>() {
             @Override
             public int compare(Edge o1, Edge o2) {
@@ -24,52 +24,13 @@ public class KruskalsAlgorithmMST {
 
         while(!pq.isEmpty()) {
             Edge e = pq.poll();
-            if(nodes[e.source] == null && nodes[e.index] == null) {
-                // create new union
-                Union<Integer> u = new Union<>();
-                u.addMember(e.source);
-                u.addMember(e.index);
-                nodes[e.source] = u;
-                nodes[e.index] = u;
-            } else if(nodes[e.source] != null && nodes[e.index] == null){
-                nodes[e.source].addMember(e.index);
-                nodes[e.index] = nodes[e.source];
-            } else if(nodes[e.source] == null && nodes[e.index] != null) {
-                // add node
-                nodes[e.index].addMember(e.source);
-                nodes[e.source] = nodes[e.index];
-            } else {
-                // combine nodes
-                // find the large one and combine the smaller one. 
-                Union<Integer> u1 = nodes[e.source];
-                Union<Integer> u2 = nodes[e.index];
-                if(u1 == u2) {
-                    continue;
-                }
-                if(u1.size <= u2.size) {
-                    u2 = u2.combine(u1);
-                    for(Integer member: u1.members) {
-                        nodes[member] = u2;
-                    }
-                } else {
-                    u1 = u1.combine(u2);
-                    for(Integer member: u2.members) {
-                        nodes[member] = u1;
-                    }
-                }
+            if(!u.isConnected(e.index, e.source)) {
+                u.unify(e.index, e.source);
+                result.add(e);
             }
-            result.add(e);
         }
-
-        Union<Integer> uniqueNode = null;
-        for(Union<Integer> u: nodes) {
-            if(uniqueNode == null) {
-                uniqueNode = u;
-            } else {
-                if(uniqueNode.hashCode() != u.hashCode()) {
-                    return null;
-                }
-            }
+        if(u.componentCount() > 1) {
+            return null;
         }
 
         return result;
