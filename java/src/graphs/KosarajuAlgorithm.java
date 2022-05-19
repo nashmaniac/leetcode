@@ -106,13 +106,18 @@ public class KosarajuAlgorithm {
     public static void main(String[] args) {
         int n = 7;
         int[][] edges = new int[][] {
+                { 0, 1 },
                 { 1, 2 },
-                { 2, 3 },
-                { 3, 1 },
-                { 2, 4 },
-                { 4, 5 },
-                { 5, 6 },
-                { 6, 4 },
+                { 2, 0 },
+                { 1, 3 },
+
+                // { 1, 2 },
+                // { 2, 3 },
+                // { 3, 1 },
+                // { 2, 4 },
+                // { 4, 5 },
+                // { 5, 6 },
+                // { 6, 4 },
         };
 
         Graph g = new Graph(n, true);
