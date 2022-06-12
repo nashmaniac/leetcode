@@ -24,9 +24,9 @@ public class LeetcodeProblem1209 {
                 if (b.c == s.charAt(i)) {
                     int newCount = b.count + 1;
                     stack.pop();
-                    if(newCount < k) {
-                        stack.push(new StackEntry(b.c, newCount));    
-                    } 
+                    if (newCount < k) {
+                        stack.push(new StackEntry(b.c, newCount));
+                    }
                 } else {
                     stack.push(new StackEntry(s.charAt(i), 1));
                 }
@@ -34,9 +34,9 @@ public class LeetcodeProblem1209 {
         }
 
         StringBuilder st = new StringBuilder();
-        while(!stack.isEmpty()) {
+        while (!stack.isEmpty()) {
             StackEntry b = stack.pop();
-            for(int i=0;i<b.count;i++) {
+            for (int i = 0; i < b.count; i++) {
                 st.append(b.c);
             }
         }

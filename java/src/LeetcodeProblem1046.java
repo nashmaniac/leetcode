@@ -12,19 +12,19 @@ public class LeetcodeProblem1046 {
             }
         });
 
-        for(int i: stones) {
+        for (int i : stones) {
             queue.offer(i);
         }
 
-        while(queue.size() > 1) {
+        while (queue.size() > 1) {
             int first = queue.poll();
             int second = queue.poll();
-            if(first != second) {
-                queue.offer(Math.abs(first-second));
+            if (first != second) {
+                queue.offer(Math.abs(first - second));
             }
         }
 
-        if(queue.size() == 1) {
+        if (queue.size() == 1) {
             return queue.poll();
         }
         return 0;
